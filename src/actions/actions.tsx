@@ -1,5 +1,6 @@
 "use server";
 
+import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -12,4 +13,12 @@ export async function createPost(formData: FormData) {
 
   const title = formData.get("title") as string;
   const body = formData.get("body") as string;
+
+  // update database
+  await prisma.post.create({
+    data: {
+      title,
+      body,
+    },
+  });
 }
