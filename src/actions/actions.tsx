@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createPost(formData: FormData) {
@@ -21,4 +22,7 @@ export async function createPost(formData: FormData) {
       body,
     },
   });
+
+  // revalidate because  of caching posts  doesnt update pos-lis page
+  revalidatePath("/posts");
 }

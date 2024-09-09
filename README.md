@@ -44,3 +44,6 @@ npx prisma init --datasource-provider sqlite
 this will create a . env file because prosma doesn't work with .env.local so we can transfer our local to env then add local env
 
 after creating the schema we need to migrate it with `npx prisma db push` which also will create a database file, we can obsorve wirh `npx prisma studio`
+
+then create lib/db.ts
+
